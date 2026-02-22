@@ -192,17 +192,6 @@ SELECT summary FROM books;
 ```
 Returns AI-generated summary of uploaded document.
 
-### Future Improvements
-
-- Vector Database (RAG)
-
-- Semantic Search
-
-- Streaming Summaries
-
-- Frontend Dashboard
-
-- Multi-document querying
 
 ## Author
 
