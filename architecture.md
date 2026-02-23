@@ -115,7 +115,7 @@ IngestionService \
 LLM Provider Interface \
 ↓ \
 ┌───────────────┬───────────────┐
-│ MockLLM │ OllamaLLM │
+│ \ MockLLM │ OllamaLLM │
 │ (Testing) │ (Real AI) │
 └───────────────┴───────────────┘
 
