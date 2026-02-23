@@ -85,20 +85,20 @@ API Layer → Services → Domain Models → Infrastructure
 ---
 
 ## Project Structure
-app/
-├── api/ # API routes
-│ └── v1/
-├── core/ # configs & dependencies
-├── domain/ # database models
-├── infrastructure/ # DB setup
-├── services/
-│ ├── ingestion_service.py
-│ ├── pdf_service.py
-│ ├── llm_provider.py
-│ └── mock_llm.py
+app/ \
+├── api/ # API routes \
+│ └── v1/ \
+├── core/ # configs & dependencies \
+├── domain/ # database models \
+├── infrastructure/ # DB setup \
+├── services/ \
+│ ├── ingestion_service.py \
+│ ├── pdf_service.py \
+│ ├── llm_provider.py \
+│ └── mock_llm.py \
 └── workers/ # background processing
 
-main.py
+main.py \
 requirements.txt
 
 ## 🤖 LLM Provider Configuration

@@ -114,8 +114,13 @@ IngestionService \
 ↓ \
 LLM Provider Interface \
 ↓ \
+<<<<<<< HEAD
 ┌───────────────┬───────────────┐
 │ \ MockLLM │ OllamaLLM │
+=======
+┌───────────────┬───────────────┐\
+│ MockLLM │ OllamaLLM │
+>>>>>>> ac7ae01 (Update README, architecture, Docker setup and TinyLlama provider)
 │ (Testing) │ (Real AI) │
 └───────────────┴───────────────┘
 
