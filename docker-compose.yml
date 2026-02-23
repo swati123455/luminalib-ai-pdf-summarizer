@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+
+  db:
+    image: postgres:15
+    container_name: luminalib_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: luminalib
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  ollama:
+    image: ollama/ollama
+    container_name: luminalib_ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+
+  api:
+    build: .
+    container_name: luminalib_api
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - ollama
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql+asyncpg://postgres:postgres@db:5432/luminalib
+      OLLAMA_BASE_URL: http://ollama:11434
+    volumes:
+      - .:/app
+    command: >
+      sh -c "sleep 5 &&
+             uvicorn app.main:app --host 0.0.0.0 --port 8000"
+
+volumes:
+  postgres_data:
+  ollama_data:

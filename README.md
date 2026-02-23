@@ -101,9 +101,89 @@ app/
 main.py
 requirements.txt
 
+## 🤖 LLM Provider Configuration
+
+LuminaLib is designed using a **provider-based architecture**, allowing the AI engine to be swapped without modifying business logic.
+
+The ingestion pipeline depends on an abstract LLM provider which can be changed based on requirements.
 
 ---
 
+### Supported Providers
+
+#### 1️⃣ Mock LLM (Default for Testing)
+
+Used during development or when no AI service is available.
+
+Location:
+app/services/llm/mock_llm.py
+
+
+Behavior:
+- Returns simulated summaries
+- No external dependencies
+- Fast execution
+
+---
+
+#### 2️⃣ Ollama Provider (Local AI – Recommended)
+
+The project currently utilizes **Ollama** with **TinyLlama / Llama3** for real AI-based summarization.
+
+Benefits:
+- Runs locally
+- No API cost
+- Offline processing
+- Easily reproducible environment
+
+Models supported:
+- `tinyllama` (lightweight)
+- `llama3` (higher quality)
+
+---
+
+## 🔄 How to Change LLM Provider
+
+The provider is injected into the `IngestionService`.
+
+### File to Modify
+app/api/v1/books.py
+
+---
+
+### Example: Using Mock LLM
+
+```python
+from app.services.llm.mock_llm import MockLLM
+
+ingestion = IngestionService(
+    llm_provider=MockLLM()
+)
+```
+### Example: Using Ollama (Real AI)
+```python
+from app.services.llm.ollama_provider import OllamaProvider
+
+ingestion = IngestionService(
+    llm_provider=OllamaProvider(model="tinyllama")
+)
+```
+### Switching Model
+
+Inside:
+```bash
+app/services/llm/ollama_provider.py
+```
+
+Change:
+```bash
+model="tinyllama"
+```
+
+to:
+```bash
+model="llama3"
+```
 ## Setup Instructions
 
 ### 1️. Clone Repository
